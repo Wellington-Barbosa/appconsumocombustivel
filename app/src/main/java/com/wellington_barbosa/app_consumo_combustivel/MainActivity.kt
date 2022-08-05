@@ -17,7 +17,27 @@ class MainActivity : AppCompatActivity() {
         val precoEtanol = txtEtanol.text.toString()
         val precoGasolina = txtGasolina.text.toString()
 
-        calcularMelhorPreco(precoEtanol, precoGasolina)
+        val validaCampos = validarCampos(precoEtanol, precoGasolina)
+
+        if (validaCampos) {
+            calcularMelhorPreco(precoEtanol, precoGasolina)
+        } else {
+            txtResultado.setText("Informe os valores dos combustíveis")
+        }
+
+
+    }
+
+    fun validarCampos(precoEtanol: String, precoGasolina: String) : Boolean {
+        var camposValidados: Boolean = true
+
+        if (precoEtanol == null || precoEtanol.equals("")) {
+            camposValidados = false
+        } else if(precoGasolina == null || precoGasolina.equals("")) {
+            camposValidados = false
+        }
+
+        return camposValidados
     }
 
     fun calcularMelhorPreco (precoEtanol: String, precoGasolina: String) {
