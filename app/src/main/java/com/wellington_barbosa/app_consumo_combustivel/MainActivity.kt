@@ -13,7 +13,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun btnCalcular(view: View) {
+        //recupera valores digitados
         val precoEtanol = txtEtanol.text.toString()
         val precoGasolina = txtGasolina.text.toString()
+
+        calcularMelhorPreco(precoEtanol, precoGasolina)
+    }
+
+    fun calcularMelhorPreco (precoEtanol: String, precoGasolina: String) {
+        //converte valores string para números
+        val valorEtanol = precoEtanol.toDouble()
+        val valorGasolina = precoGasolina.toDouble()
+
+        /* Para calcular utilizaremos (valorEtanol / valorGasolina)
+        * Se o resultado >= 0.7 melhor utilizar gasolina
+        * senão melhor utilizar Etanol
+        * */
+        val resultadoPreco = valorEtanol / valorGasolina
+
+        if (resultadoPreco >= 0.7) {
+            txtResultado.setText("Melhor utilizar gasolina")
+        } else {
+            txtResultado.setText("Melhor utilizar Etanol")
+        }
+
     }
 }
